@@ -6,18 +6,11 @@
 /*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 05:44:37 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/11 02:13:51 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/11 04:15:29 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-size_t check_flags(char *after_pct, t_printinfo *info) 
-{
-	const char	specifiers[10] = "cspdiuxX%";
-
-	while (*(after_pct + ))
-}
 
 size_t	conversion(char *specifiers, t_printinfo *info, va_list args)
 {
@@ -26,7 +19,6 @@ size_t	conversion(char *specifiers, t_printinfo *info, va_list args)
 	specifiers = check_flags(specifiers, info);
 	printed_char_count = 1;
 
-	
 	return (printed_char_count);
 }
 
