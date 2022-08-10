@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 05:44:37 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/08 18:53:38 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/10 21:05:57 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t check_flags()
+size_t check_flags(char *specifier, t_printinfo *info) 
+{
+	const char	specifiers[10] = "cspdiuxX%";
 
-size_t	conversion(char *specifier, va_list args)
+	
+}
+
+size_t	conversion(char *specifier, t_printinfo *info, va_list args)
 {
 	int	printed_char_count;
 
@@ -23,8 +28,11 @@ size_t	conversion(char *specifier, va_list args)
 	switch (*specifier)
 	{
 		case 'c':
+			printf();
 		case 's':
+			print_str();
 		case 'p':
+			
 		case 'd':
 		case 'i':
 		case 'u':
@@ -49,29 +57,30 @@ void	init(t_printinfo *info)
 
 int	ft_printf(const char *input, ...)
 {
-	size_t		i;
 	size_t		printed_count;
 	size_t		tmp;
 	t_printinfo	*info;
 	va_list		args;
 
-	i = 0;
 	printed_count = 0;
+	info->i = 0;
+	info->error = false;
 	va_start(args, input);
-	init(info);
-	while (*(input + i))
+	while (*(input + info->i) && info->error == false)
 	{
-		if (*(input + i) == '%')
-			tmp += conversion(input + i + 1, args, info);
+		init(info);
+		if (*(input + info->i) == '%')
+			tmp += conversion(input + info->i + 1, args, info);
 		else
-			tmp += no_conversion(input + i);
-		//check overflow before addition, dont know how real printf handles int overflows yet
-		i += tmp;
+			tmp += no_conversion(input + info->i, info);
 		printed_count += tmp;
 	}
 	va_end(args);
+	if (info->error == true)
+		return (-1);
 	return (printed_count);
 }
 
+//check overflow before addition, dont know how real printf handles int overflows yet
 //if i send (input + i + 1) and recieve it as a pointer, if I move the pointer in that function, input changes right?
-//idk confirm that ltr
+//idk confirm that later

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   no_specifier.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:21:29 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/09 23:26:40 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/10 19:40:00 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,9 @@ size_t	no_conversion(char *input)
 
 	percent_ptr = ft_strchr(input, '%');
 	if (!percent_ptr)
-	{
 		len = ft_strlen(input);
-		print_str(input, 1, len);
-		return (len);
-	}
 	else
-		print_str(input, 1, percent_ptr - input);
-	return (percent_ptr - input);
+		len = percent_ptr - input;
+	print_str(input, 1, len);
+	return (len);
 }
