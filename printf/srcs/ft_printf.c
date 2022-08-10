@@ -6,45 +6,33 @@
 /*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 05:44:37 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/10 21:05:57 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/11 02:13:51 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t check_flags(char *specifier, t_printinfo *info) 
+size_t check_flags(char *after_pct, t_printinfo *info) 
 {
 	const char	specifiers[10] = "cspdiuxX%";
 
-	
+	while (*(after_pct + ))
 }
 
-size_t	conversion(char *specifier, t_printinfo *info, va_list args)
+size_t	conversion(char *specifiers, t_printinfo *info, va_list args)
 {
 	int	printed_char_count;
 
-	specifier = check_flags;
+	specifiers = check_flags(specifiers, info);
 	printed_char_count = 1;
-	switch (*specifier)
-	{
-		case 'c':
-			printf();
-		case 's':
-			print_str();
-		case 'p':
-			
-		case 'd':
-		case 'i':
-		case 'u':
-		case 'x':
-		case 'X':
-		case '%':
-	}
+
+	
 	return (printed_char_count);
 }
 
 void	init(t_printinfo *info)
 {
+	info->current_specifier = '\0';
 	info->digits = 0;
 	info->precision = 0;
 	info->width = 0;
