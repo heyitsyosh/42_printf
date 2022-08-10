@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/09 23:30:15 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/10 20:18:35 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 # include <unistd.h>
 # include <stdbool.h>
+# include <stdarg.h>
 
 typedef struct s_printinfo
 {
+	size_t	i;
 	int		digits;
 	int		precision;
 	int		width;
