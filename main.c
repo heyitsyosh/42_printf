@@ -65,9 +65,20 @@ int main()
 	// printf("%s", ptr);
 	// return (0); //im an idiot you can change content in another function using pointers but not the pointer itself (doesnt move at all) unless i have a double pointer, then I could move along the pointer?? i think.
 
+	//a = printf("asdf%*c", 'a'); //more '%' conversions than data arguments
+	//a = printf("asdf%.c", 'a'); //no error (perhaps . reads num after and detects 0?)
+	//a = printf("asdf%.1234c", 'a'); //precision used with 'c' conversion specifier, resulting in undefined behavior
+	//a = printf("asdf%-12345c", 'a'); //ignores 0 padding
 
+	//a = printf("asdf%.000c", 'a');
+	a = printf("%");
+	printf("%d", a);
 }
 
+//undefined with %c - (#-no reaction, ' '-no reaction, precision but not necessarily '.' - no reaction (if only ., not undefined. compiles with no reaction), '+' - no reaction, '0' - has reaction)
+//%c works with purely number specifiers, and '-'
+
+//no error (perhaps . reads num after and detects 0?)
 //use sizeof va arg to determine if there is at least one variable after input
 
 /*
