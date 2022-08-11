@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 05:44:37 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/11 04:15:29 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/12 02:42:41 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ size_t	conversion(char *specifiers, t_printinfo *info, va_list args)
 {
 	int	printed_char_count;
 
-	specifiers = check_flags(specifiers, info);
-	printed_char_count = 1;
+	specifiers = check_flags(specifiers, info, 0);
 
 	return (printed_char_count);
 }
@@ -25,7 +24,6 @@ size_t	conversion(char *specifiers, t_printinfo *info, va_list args)
 void	init(t_printinfo *info)
 {
 	info->current_specifier = '\0';
-	info->digits = 0;
 	info->precision = 0;
 	info->width = 0;
 	info->dash = false;
@@ -37,28 +35,26 @@ void	init(t_printinfo *info)
 
 int	ft_printf(const char *input, ...)
 {
-	size_t		printed_count;
 	size_t		tmp;
 	t_printinfo	*info;
 	va_list		args;
 
-	printed_count = 0;
+	info->printed = 0;
 	info->i = 0;
-	info->error = false;
 	va_start(args, input);
-	while (*(input + info->i) && info->error == false)
+	while (*(input + info->i))
 	{
 		init(info);
 		if (*(input + info->i) == '%')
-			tmp += conversion(input + info->i + 1, args, info);
+			tmp += conversion(input + info->i++, info, args); //test the ++ bit
 		else
 			tmp += no_conversion(input + info->i, info);
-		printed_count += tmp;
+		info->printed += tmp;
 	}
 	va_end(args);
-	if (info->error == true)
+	if (info->printed >= INT_MAX || info->error == true)
 		return (-1);
-	return (printed_count);
+	return (info->printed);
 }
 
 //check overflow before addition, dont know how real printf handles int overflows yet

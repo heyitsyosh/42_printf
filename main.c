@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stddef.h>
+#include <limits.h>
 
 // void printascii()
 // {
@@ -71,8 +72,33 @@ int main()
 	//a = printf("asdf%-12345c", 'a'); //ignores 0 padding
 
 	//a = printf("asdf%.000c", 'a');
-	a = printf("%");
-	printf("%d", a);
+	//a = printf("%"); // prints nothing returns 0
+	//printf("%d", a);
+
+	//a = printf("%2147483647d", 1); //INTMAX, doesnt print, return -1
+	//a = printf("%2147483648d", 1); //INTMAX + 1, doesnt print, return -1
+	//a = printf("a%2147483645d", 1); //INTMAX - 1, prints, returns printed num
+	//a = printf("asdf123498123049871029384710928374091872309487108273049871092837401987209347801987203894710927304%2147483548dabcdef", 1);
+	//a = printf("asdf123498123049871029384710928374091872309487108273049871092837401987209347801987203894710927304%2147483548dabcdef", 1);
+	//a = printf("a%2147483644dabasdf", 1); //INTMAX - 1, prints
+	//a = printf("%da%2147483644dabasdf", 1, 1); //INTMAX - 1, prints, but returns -1
+
+	printf("\n%d", a);
+	//a = printf("");
+
+// printf("st|%d\n",    printf("st|%2147483644d\n", 1)); //フィールド幅がINT_MAX未満
+// printf("st|%d\n",    printf("st|%2147483648d\n", 1)); //フィールド幅がINT_MAX超
+
+// size_t n = INT_MAX;
+// n += 10;
+// char *str;
+// str = malloc(sizeof(char) * (n + 1));
+// memset(str, 'a', n);
+// str[n] = '\0';
+// printf("(ret)|%d|\n",   printf("st(fmt)|%s|", str)); //%sがINT_MAX超
+
+// // やたら0を出力する。いつ終わるのかわからない感じ。
+// printf("st|%d\n",    printf("st|%.2147483648d\n", 1)); //精度がINT_MAX超
 }
 
 //undefined with %c - (#-no reaction, ' '-no reaction, precision but not necessarily '.' - no reaction (if only ., not undefined. compiles with no reaction), '+' - no reaction, '0' - has reaction)
