@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/11 01:13:32 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/12 02:40:31 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <stdarg.h>
+# include <stddef.h>
+# include <limits.h>
 
 typedef struct s_printinfo
 {
-	size_t	i;
-	char	current_specifier;
-	int		digits;
+	size_t	i;					
+	size_t	printed;
+	bool	error;			
+	char	current_specifier;	
 	int		precision;
 	int		width;
 	bool	dash;
@@ -29,7 +32,6 @@ typedef struct s_printinfo
 	bool	sharp;
 	bool	space;
 	bool	plus;
-	bool	error;
 }	t_printinfo;
 
 #endif
