@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 04:15:35 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/12 02:44:55 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/13 02:49:08 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,23 @@ size_t	printf_atoi(const char *str, t_printinfo *info)
 
 	i = 0;
 	num = make_l(str + 1, &i, 0);
-	if (*str == '*')
+	if (*str == '*' || num < INT_MAX)
 		info->width = num;
-	if (*str == '.')
+	else if (*str == '.' || num < INT_MAX)
 		info->precision = num;
-	if (*str == '0')
+	else if (*str == '0' || num < INT_MAX)
 		info->zero = num;
-	else if (ft_isdigit(*str))
+	else if (ft_isdigit(*str) || num < INT_MAX)
 		info->width = num;
+	else
+		info->error = true;
 	return (i);
 }
 //what if after the flag is \0
 
-size_t	check_flags(char *after_pct, t_printinfo *info, size_t i)
+char	check_flags(char *after_pct, t_printinfo *info, size_t i)
 {
-	while (!ft_strchr("cspdiuxX%", *(after_pct + i)))
+	while (*(after_pct + i) && !ft_strchr("cspdiuxX%", *(after_pct + i)))
 	{
 		if (*(after_pct + i) == '-')
 			info->dash = true;
@@ -69,5 +71,5 @@ size_t	check_flags(char *after_pct, t_printinfo *info, size_t i)
 			i += printf_atoi(*(after_pct + i), info);
 	}
 	info->i += i;
-	return (i);
+	return (*(after_pct + i + 1));
 }
