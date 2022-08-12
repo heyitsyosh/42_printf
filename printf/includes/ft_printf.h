@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/12 02:40:31 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/12 19:30:18 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 typedef struct s_printinfo
 {
+	va_list	args;
 	size_t	i;					
 	size_t	printed;
 	bool	error;			
