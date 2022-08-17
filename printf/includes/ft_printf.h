@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/18 03:56:32 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/18 04:23:22 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@
 
 typedef struct s_printinfo
 {
-	size_t	i;					
-	size_t	printed;
+	size_t	i;
 	char	fmt;	
 	long	precision;
 	long	width;
