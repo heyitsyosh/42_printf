@@ -50,7 +50,7 @@ int	put_str(char *arg, t_printinfo *info)
 		free(arg);
 		arg = ft_strdup("(null)");
 		if (!arg)
-			return (printed); // what kind of error handling should i do? return intmax?
+			return (printed); // what kind of error handling should i do?
 	}
 	arg_len = ft_strlen(arg);
 	if (info->precision != -1 && info->precision < arg_len)
