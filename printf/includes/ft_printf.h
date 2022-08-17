@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/12 02:40:31 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/18 03:56:32 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ typedef struct s_printinfo
 {
 	size_t	i;					
 	size_t	printed;
-	bool	error;			
-	char	current_specifier;	
-	int		precision;
-	int		width;
+	char	fmt;	
+	long	precision;
+	long	width;
 	bool	dash;
-	int		zero;
+	char	padding;
 	bool	sharp;
 	bool	space;
 	bool	plus;
