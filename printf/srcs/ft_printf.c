@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 05:44:37 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/12 02:42:41 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/18 03:56:06 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,35 @@
 
 size_t	conversion(char *specifiers, t_printinfo *info, va_list args)
 {
-	int	printed_char_count;
+	int		printed;
+	char	*tmp;
 
-	specifiers = check_flags(specifiers, info, 0);
-
-	return (printed_char_count);
+	printed = 0;
+	info->i += check_flags(specifiers, info, args, 0);
+	if (info->width >= INT_MAX)
+		return (INT_MAX);
+	if (info->fmt == 'c')
+		printed += put_char(va_arg(args, unsigned char), info);
+	else if (info->fmt == 's')
+		printed += put_str(va_arg(args, char *), info);
+	else if (info->fmt == 'p')
+		printed += put_hex(va_arg(args, unsigned long long), info);
+	else if (info->fmt == 'd' || info->fmt == 'i' || info->fmt == 'u')
+		printed += put_int(args, info);
+	else if (info->fmt == 'x' || info->fmt == 'X')
+		printed += put_hex(va_arg(args, unsigned int), info);
+	else if (info->fmt == '%')
+		printed += put_char('%', info);
+	return (printed);
 }
 
 void	init(t_printinfo *info)
 {
-	info->current_specifier = '\0';
-	info->precision = 0;
+	info->fmt = '\0';
+	info->precision = -1;
 	info->width = 0;
 	info->dash = false;
-	info->zero = 0;
+	info->zero = ' ';
 	info->sharp = false;
 	info->space = false;
 	info->plus = false;
@@ -35,28 +50,26 @@ void	init(t_printinfo *info)
 
 int	ft_printf(const char *input, ...)
 {
-	size_t		tmp;
-	t_printinfo	*info;
 	va_list		args;
+	t_printinfo	*info;
+	size_t		tmp;
+	size_t		printed;
 
-	info->printed = 0;
+	info->error = false;
 	info->i = 0;
+	printed = 0;
 	va_start(args, input);
-	while (*(input + info->i))
+	while (input[info->i] || printed < INT_MAX)
 	{
 		init(info);
-		if (*(input + info->i) == '%')
-			tmp += conversion(input + info->i++, info, args); //test the ++ bit
+		if (input[info->i] == '%')
+			tmp += conversion(input + info->i++, info, args);
 		else
 			tmp += no_conversion(input + info->i, info);
-		info->printed += tmp;
+		printed += tmp;
 	}
 	va_end(args);
-	if (info->printed >= INT_MAX || info->error == true)
+	if (printed >= INT_MAX)
 		return (-1);
-	return (info->printed);
+	return (printed);
 }
-
-//check overflow before addition, dont know how real printf handles int overflows yet
-//if i send (input + i + 1) and recieve it as a pointer, if I move the pointer in that function, input changes right?
-//idk confirm that later
