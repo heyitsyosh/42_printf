@@ -8,18 +8,18 @@ I tried to implement the origial printf as much as possible.
 ---|------|
 %c | character				|
 %s | string					|
-%p | pointer				|
-%d | decimal signed integer	|
-%i | integer				|
-%u | unsigned integer		|
-%x | hex integer (lowercase)|
-%X | hex integer (uppercase)|
-%% | just the %				|
+%p | void pointer				|
+%d | signed int	|
+%d | signed int	|
+%u | unsigned int		|
+%x | hex (lowercase)|
+%X | hex (uppercase)|
+%% | %			|
 
 flag||
 ----|---|
 num	| (number between % and the identifier) minimum field width						|
 '-' 	| left justify 																	|
-'0' 	| field padded with 0's instead of blanks										|
+'0' 	| padding with 0s								|
 '.' 	| precision															|
-'*' 	| indicates that the maximum or minimum field width will be passed as parameter	|
+'*' 	| precision/width from parameter	|
