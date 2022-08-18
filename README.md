@@ -33,7 +33,7 @@ Relationship chart of formats and flags:
 ----
 **I tried to stay true to the original printf as much as possible.**
 
-If output formatting is interrupted by an irrelevant character, printf prints string after the already parsed flags.  
+If output formatting is interrupted by an irrelevant character, printf prints the string after the already parsed flags.  
 >Example:  
 >```printf("%#()s", "abc")``` outputs ```()s```  
 
