@@ -16,7 +16,7 @@ I tried to implement the origial printf as much as possible.
 %X | hex integer (uppercase)|
 %% | just the %				|
 
-flag|
+flag||
 ----|---|
 num	| (number between % and the identifier) minimum field width						|
 '-' 	| left justify 																	|
