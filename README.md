@@ -18,7 +18,7 @@ I tried to implement the origial printf as much as possible.
 
 flag||
 ----|---|
-num	| minimum field width						|
+number	| minimum field width						|
 '-' 	| left justify 																	|
 '0' 	| padding with 0s								|
 '.' 	| precision															|
