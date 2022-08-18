@@ -45,4 +45,4 @@ Although putting flags, width, precision in the wrong order produces a warning, 
 My code accepts output formatting in the wrong order as well.  
 
 ----
--flag ' ' is ignored when flag '+' is present
+- flag ' ' is ignored when flag '+' is present
