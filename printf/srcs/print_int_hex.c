@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_int.c                                        :+:      :+:    :+:   */
+/*   print_int_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/17 22:15:17 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/19 07:21:14 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// char *iu_toa_base()
-// {
+char *lltoa(, int	base)
+{
 	
-// }
+}
 
-int	put_int(va_list args, t_printinfo *info)
+char *u_itoa(unsigned int, int base)
+{
+	
+}
+
+int	(va_list args, t_info *info)
 {
 	size_t			arg_len;
 	int				printed;
@@ -30,14 +35,4 @@ int	put_int(va_list args, t_printinfo *info)
 	else if (info->fmt == 'd' || info->fmt == 'i')
 		di = va_args(args, int);
 	num_as_arr = i_u_toa_base();
-	arg_len = ft_strlen(num_as_arr);
-	if (info->precision != -1 && info->precision < arg_len)
-		arg_len = info->precision;
-	if (info->dash == true)
-		printed += print_str(arg, arg_len);
-	while (info->width-- > arg_len)
-		printed += write(1, &info->padding, 1);
-	if (info->dash == false)
-		printed += print_str(arg, arg_len);
-	return (printed);
 }

@@ -14,7 +14,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-int	print_str(char *input, size_t len, t_printinfo *info)
+int	print_str(char *input, size_t len, t_info *info)
 {
 	if (len < INT_MAX)
 		write(1, input, len);
@@ -23,7 +23,7 @@ int	print_str(char *input, size_t len, t_printinfo *info)
 	return (len);
 }
 
-int	no_conversion(char *input, t_printinfo *info)
+int	no_conversion(char *input, t_info *info)
 {
 	char	*percent_ptr;
 	size_t	len;
@@ -39,7 +39,7 @@ int	no_conversion(char *input, t_printinfo *info)
 	return (print_len);
 }
 
-int	put_str(char *arg, t_printinfo *info)
+int	put_str(t_info *info, char *arg)
 {
 	size_t	arg_len;
 	int		printed;
@@ -50,10 +50,10 @@ int	put_str(char *arg, t_printinfo *info)
 		free(arg);
 		arg = ft_strdup("(null)");
 		if (!arg)
-			return (printed); // what kind of error handling should i do?
+			return (INT_MAX);
 	}
 	arg_len = ft_strlen(arg);
-	if (info->precision != -1 && info->precision < arg_len)
+	if (info->precision > -1 && info->precision < arg_len)
 		arg_len = info->precision;
 	if (info->dash == true)
 		printed += print_str(arg, arg_len);
@@ -64,10 +64,8 @@ int	put_str(char *arg, t_printinfo *info)
 	return (printed);
 }
 
-int	put_char(unsigned char arg, t_printinfo *info)
+int	put_char(t_info *info, int arg)
 {
-	char *char_as_str;
-
 	if (info->dash == true)
 		printed += write(1, &arg, 1);
 	while (info->width-- > arg_len)
