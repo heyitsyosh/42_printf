@@ -43,3 +43,6 @@ My implementation treats all characters not mentioned in the pdf as irrelevant a
 
 Although putting flags, width, precision in the wrong order produces a warning, the original printf parses correctly and compiles.  
 My code accepts output formatting in the wrong order as well.  
+
+----
+-flag ' ' is ignored when flag '+' is present
