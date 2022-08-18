@@ -35,7 +35,7 @@ Relationship chart of formats and flags:
 
 If output formatting is interrupted by an irrelevant character, printf prints the string after the already parsed flags.  
 >Example:  
->```printf("%#()s", "abc")``` outputs ```()s```  
+>```printf("%#()s%s", "abc")``` outputs ```()sabc```  
 
 My implementation treats all characters not mentioned in the pdf as irrelevant and acts accordingly.  
 
