@@ -40,7 +40,7 @@ If conversion specifiers are interrupted by an irrelevant character, printf prin
 
 My implementation treats all characters not mentioned in the pdf as irrelevant and acts accordingly.  
 
->% <flags> <width> <.prec> type_char  
+>% \<flags\> \<width\> <.prec> type_char  
 
 Although putting flags, width, precision in the wrong order produces a warning, the original printf parses correctly and compiles.  
 My code accepts output formatting in the wrong order as well.  
