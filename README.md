@@ -33,10 +33,9 @@ Relationship chart of formats and flags:
 ----
 **I tried to stay true to the original printf as much as possible.**
 
-If conversion specifiers are interrupted by an irrelevant character, printf prints string after %.  
+If output formatting is interrupted by an irrelevant character, printf prints string after the already parsed flags.  
 >Example:  
->```printf("%#()s", "abc")``` outputs ```#()s```  
->```printf("%#()s%s", "abc")``` outputs ```#()sabc```  
+>```printf("%#()s", "abc")``` outputs ```()s```  
 
 My implementation treats all characters not mentioned in the pdf as irrelevant and acts accordingly.  
 
