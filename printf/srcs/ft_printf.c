@@ -6,37 +6,38 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 05:44:37 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/18 03:56:06 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/19 06:50:55 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	conversion(char *specifiers, t_printinfo *info, va_list args)
+size_t	conversion(char *specifiers, t_info *info, va_list args)
 {
 	int		printed;
 	char	*tmp;
 
 	printed = 0;
-	info->i += check_flags(specifiers, info, args, 0);
-	if (info->width >= INT_MAX)
+	info->i += get_info(specifiers, info, args, &printed, 0);
+	if (info->width == INT_MAX
+		|| (info->precision == INT_MAX && !strchr("cs%", info->fmt))
 		return (INT_MAX);
 	if (info->fmt == 'c')
-		printed += put_char(va_arg(args, unsigned char), info);
+		printed += put_char(info, va_arg(args, unsigned char));
 	else if (info->fmt == 's')
-		printed += put_str(va_arg(args, char *), info);
+		printed += put_str(info, va_arg(args, char *);
 	else if (info->fmt == 'p')
-		printed += put_hex(va_arg(args, unsigned long long), info);
+		printed += put_hex(info, va_arg(args, unsigned long long));
 	else if (info->fmt == 'd' || info->fmt == 'i' || info->fmt == 'u')
-		printed += put_int(args, info);
+		printed += put_int(info, args);
 	else if (info->fmt == 'x' || info->fmt == 'X')
-		printed += put_hex(va_arg(args, unsigned int), info);
+		printed += put_hex(info, va_arg(args, unsigned int));
 	else if (info->fmt == '%')
-		printed += put_char('%', info);
+		printed += put_char(info, '%');
 	return (printed);
 }
 
-void	init(t_printinfo *info)
+static void	init(t_info *info)
 {
 	info->fmt = '\0';
 	info->precision = -1;
@@ -44,15 +45,13 @@ void	init(t_printinfo *info)
 	info->dash = false;
 	info->zero = ' ';
 	info->sharp = false;
-	info->space = false;
-	info->plus = false;
+	info->sign = '\0';
 }
 
 int	ft_printf(const char *input, ...)
 {
 	va_list		args;
-	t_printinfo	*info;
-	size_t		tmp;
+	t_info		*info;
 	size_t		printed;
 
 	info->error = false;
@@ -63,10 +62,9 @@ int	ft_printf(const char *input, ...)
 	{
 		init(info);
 		if (input[info->i] == '%')
-			tmp += conversion(input + info->i++, info, args);
+			printed += conversion(input + info->i++, info, args);
 		else
-			tmp += no_conversion(input + info->i, info);
-		printed += tmp;
+			printed += no_conversion(input + info->i, info);
 	}
 	va_end(args);
 	if (printed >= INT_MAX)
