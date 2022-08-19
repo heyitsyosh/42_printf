@@ -11,8 +11,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "libft.h"
+#include "ft_printf.h"
 
 int	print_str(char *input, size_t len, t_info *info)
 {
@@ -39,38 +39,39 @@ int	no_conversion(char *input, t_info *info)
 	return (print_len);
 }
 
-int	put_str(t_info *info, char *arg)
+int	put_str(t_info *info, char *str)
 {
-	size_t	arg_len;
+	size_t	s_len;
 	int		printed;
 
 	printed = 0;
-	if (arg == NULL)
+	if (str == NULL)
 	{
-		free(arg);
-		arg = ft_strdup("(null)");
-		if (!arg)
+		free(str);
+		str = ft_strdup("(null)");
+		if (!str)
 			return (INT_MAX);
 	}
-	arg_len = ft_strlen(arg);
-	if (info->precision > -1 && info->precision < arg_len)
-		arg_len = info->precision;
+	s_len = ft_strlen(str);
+	if (info->precision > -1 && info->precision < s_len)
+		s_len = info->precision;
 	if (info->dash == true)
-		printed += print_str(arg, arg_len);
-	while (info->width-- > arg_len)
+		printed += print_str(str, s_len);
+	while (info->width-- > s_len)
 		printed += write(1, &info->padding, 1);
 	if (info->dash == false)
-		printed += print_str(arg, arg_len);
+		printed += print_str(str, s_len);
+	free(str);
 	return (printed);
 }
 
-int	put_char(t_info *info, int arg)
+int	put_char(t_info *info, int chr)
 {
 	if (info->dash == true)
-		printed += write(1, &arg, 1);
-	while (info->width-- > arg_len)
+		printed += write(1, &chr, 1);
+	while (info->width-- > 1)
 		printed += write(1, &info->padding, 1);
 	if (info->dash == false)
-		printed += write(1, &arg, 1);
+		printed += write(1, &chr, 1);
 	return (printed);
 }
