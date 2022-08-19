@@ -1,12 +1,12 @@
-/* ************************************************************************** */
+ b/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags.c                                            :+:      :+:    :+:   */
+/*   flags_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 04:15:35 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/19 08:11:44 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/20 01:37:58 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ size_t	get_info(char *after_pct, t_info *info, va_list args, int *p, size_t i)
 		*p = no_conversion(after_pct + i, info);
 	else
 		info->fmt = after_pct[i];
+	if (info->dash && info->padding == '0')
+		info->padding = ' ';
 	info->i += i;
 	return (i);
 }

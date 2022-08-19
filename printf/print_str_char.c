@@ -55,11 +55,11 @@ int	put_str(t_info *info, char *str)
 	s_len = ft_strlen(str);
 	if (info->precision > -1 && info->precision < s_len)
 		s_len = info->precision;
-	if (info->dash == true)
+	if (info->dash)
 		printed += print_str(str, s_len);
 	while (info->width-- > s_len)
 		printed += write(1, &info->padding, 1);
-	if (info->dash == false)
+	if (!info->dash)
 		printed += print_str(str, s_len);
 	free(str);
 	return (printed);
@@ -67,11 +67,11 @@ int	put_str(t_info *info, char *str)
 
 int	put_char(t_info *info, int chr)
 {
-	if (info->dash == true)
+	if (info->dash)
 		printed += write(1, &chr, 1);
 	while (info->width-- > 1)
 		printed += write(1, &info->padding, 1);
-	if (info->dash == false)
+	if (!info->dash)
 		printed += write(1, &chr, 1);
 	return (printed);
 }
