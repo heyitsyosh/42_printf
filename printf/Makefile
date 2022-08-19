@@ -12,8 +12,8 @@ BONUS_ = flags_bonus
 SRCS = $(addsuffix .c, $(SRCS_))
 BONUS = $(addsuffix .c, $(BONUS_))
 
-OBJS = $(SRCS:.c=.o)
-BONUS_OBJS = $(BONUS:.c=.o)
+OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
+BONUS_OBJS = $(addprefix $(OBJDIR)/, $(BONUS:.c=.o))
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
