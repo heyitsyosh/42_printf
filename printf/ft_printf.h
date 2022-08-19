@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/20 07:37:34 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/20 07:41:46 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int		put_str(t_info *info, const char *str);
 int		put_unsigned(t_info *info, unsigned long long ull);
 int		put_signed(t_info *info, char *num);
 
-int		no_conversion(char *input, t_info *info);
+int		no_conversion(const char *input, t_info *info);
 
 char	*ft_ulltoa(unsigned long long ull, int base, t_info *info);
-int		print_str(const char *input, size_t len, t_info *info);
+int		print_str(const char *input, size_t len);
 #endif
