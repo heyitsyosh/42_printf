@@ -1,16 +1,16 @@
- b/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   flags_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 04:15:35 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/20 01:37:58 by myoshika         ###   ########.fr       */
+/*   Created: 2022/08/20 07:01:55 by myoshika          #+#    #+#             */
+/*   Updated: 2022/08/20 07:02:00 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/libft.h"
 #include "ft_printf.h"
 
 static int	basic_atoi(const char *str, size_t *i, int num)
@@ -26,7 +26,7 @@ static int	basic_atoi(const char *str, size_t *i, int num)
 	return (num);
 }
 
-static int	get_width(char *str, t_info *info, va_list args, size_t i)
+static int	get_width(const char *str, t_info *info, va_list args, size_t i)
 {
 	if (str[i] == '*' && str[i + 1] != '.')
 	{
@@ -45,7 +45,7 @@ static int	get_width(char *str, t_info *info, va_list args, size_t i)
 	return (i);
 }
 
-static int	get_precision(char *str, t_info *info, va_list args, size_t i)
+static int	get_precision(const char *str, t_info *info, va_list args, size_t i)
 {
 	if (str[i] == '.' && str[i + 1] == '*')
 	{
@@ -60,7 +60,7 @@ static int	get_precision(char *str, t_info *info, va_list args, size_t i)
 	return (i);
 }
 
-static size_t	get_flags(char *after_pct, t_info *info, size_t i)
+static size_t	get_flags(const char *after_pct, t_info *info, size_t i)
 {
 	while (after_pct[i] && ft_strchr("- +#0", after_pct[i]))
 	{
@@ -79,8 +79,11 @@ static size_t	get_flags(char *after_pct, t_info *info, size_t i)
 	return (i);
 }
 
-size_t	get_info(char *after_pct, t_info *info, va_list args, int *p, size_t i)
+size_t	get_info(const char *after_pct, t_info *info, va_list args, int *p)
 {
+	size_t	i;
+
+	i = 0;
 	while (after_pct[i] && ft_strchr("- +#.*0123456789", after_pct[i]))
 	{
 		i += get_flags(after_pct, info, i);

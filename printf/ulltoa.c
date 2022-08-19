@@ -6,14 +6,14 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 10:30:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/20 00:25:45 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/20 07:06:29 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/libft.h"
 #include "ft_printf.h"
 
-int	get_digits(unsigned long long ull, int base)
+static int	get_ull_len(unsigned long long ull, int base)
 {
 	int	digits;
 
@@ -28,11 +28,11 @@ int	get_digits(unsigned long long ull, int base)
 	return (digits);
 }
 
-void	put_in_dig(char *arr, unsigned long long ull, int base, t_info *info)
+static void	put_in_digits(char *arr, unsigned long long ull, int base, t_info *info)
 {
-	const char	*lower = "013456789abcdef";
-	const char	*upper = "013456789ABCDEF";
-	int			div;
+	const char		*lower = "013456789abcdef";
+	const char		*upper = "013456789ABCDEF";
+	unsigned int	div;
 
 	div = 1;
 	while (ull / base >= div)
@@ -45,7 +45,7 @@ void	put_in_dig(char *arr, unsigned long long ull, int base, t_info *info)
 			*arr = lower[ull / div];
 		ull %= div;
 		div /= base;
-		*arr++;
+		arr++;
 	}
 	*arr = '\0';
 }
@@ -55,8 +55,8 @@ char	*ft_ulltoa(unsigned long long ull, int base, t_info *info)
 	char		*arr;
 	int			digits;
 
-	digits = digit_count(n);
-	if ((digits == INT_MAX - 1 && info->sharp && (ft_strchr("xX"), info->fmt)
+	digits = get_ull_len(n);
+	if ((digits == INT_MAX - 1 && info->sharp && (ft_strchr("xX"), info->fmt))
 		|| digits == INT_MAX)
 		return (NULL);
 	else if (info->sharp && (ft_strchr("xX"), info->fmt))
