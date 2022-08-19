@@ -6,10 +6,11 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 05:44:37 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/19 07:28:54 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/19 10:10:45 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "ft_printf.h"
 
 size_t	conversion(char *specifiers, t_info *info, va_list args)
@@ -20,17 +21,14 @@ size_t	conversion(char *specifiers, t_info *info, va_list args)
 	printed = 0;
 	info->i += get_info(specifiers, info, args, &printed, 0);
 	if (info->width == INT_MAX
-		|| (info->precision == INT_MAX && !strchr("cs%", info->fmt)))
+		|| (info->precision == INT_MAX && ft_strchr("pdiuxX ", info->fmt)))
 		return (INT_MAX);
 	if (info->fmt == 'c')
 		printed += put_char(info, va_arg(args, int));
 	else if (info->fmt == 's')
-		printed += put_str(info, va_arg(args, char *));
-	else if (info->fmt == 'p')
-		printed += put_ptr(info, va_arg(args, unsigned long long));
-	else if (info->fmt == 'd' || info->fmt == 'i' || info->fmt == 'u'
-		|| info->fmt == 'x' || info->fmt == 'X')
-		printed += put_u_int(info, args);
+		printed += put_ptr(info, va_arg(args, char *));
+	else if (ft_strchr("pdiuxX", info->fmt))
+		printed += put_int_hex(info, args);
 	else if (info->fmt == '%')
 		printed += put_char(info, '%');
 	return (printed);
@@ -38,9 +36,9 @@ size_t	conversion(char *specifiers, t_info *info, va_list args)
 
 static void	init(t_info *info)
 {
-	info->fmt = '\0';
+	info->fmt = ' ';
 	info->precision = -1;
-	info->width = 0;
+	info->width = -1;
 	info->dash = false;
 	info->zero = ' ';
 	info->sharp = false;

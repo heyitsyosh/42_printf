@@ -6,14 +6,14 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 04:15:35 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/19 05:35:22 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/19 08:11:44 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-static int	basic_atol(const char *str, size_t *i, int num)
+static int	basic_atoi(const char *str, size_t *i, int num)
 {
 	while (str[*i] && (str[*i] >= '0' && str[*i] <= '9'))
 	{
@@ -40,7 +40,7 @@ static int	get_width(char *str, t_info *info, va_list args, size_t i)
 	}
 	else if (ft_isdigit(str[i]))
 	{
-		info->width = basic_atol(str + i, &i, 0);
+		info->width = basic_atoi(str + i, &i, 0);
 	}
 	return (i);
 }
@@ -55,7 +55,7 @@ static int	get_precision(char *str, t_info *info, va_list args, size_t i)
 	else if (str[i] == '.')
 	{
 		i++;
-		info->precision = basic_atol(str + i, &i, 0);
+		info->precision = basic_atoi(str + i, &i, 0);
 	}
 	return (i);
 }
