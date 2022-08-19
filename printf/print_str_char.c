@@ -11,10 +11,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/libft.h"
 #include "ft_printf.h"
 
-int	print_str(char *input, size_t len, t_info *info)
+int	print_str(const char *input, size_t len)
 {
 	if (len < INT_MAX)
 		write(1, input, len);
@@ -23,7 +23,7 @@ int	print_str(char *input, size_t len, t_info *info)
 	return (len);
 }
 
-int	no_conversion(char *input, t_info *info)
+int	no_conversion(const char *input, t_info *info)
 {
 	char	*percent_ptr;
 	size_t	len;
@@ -39,7 +39,7 @@ int	no_conversion(char *input, t_info *info)
 	return (print_len);
 }
 
-int	put_str(t_info *info, char *str)
+int	put_str(t_info *info, const char *str)
 {
 	size_t	s_len;
 	int		printed;
@@ -47,26 +47,30 @@ int	put_str(t_info *info, char *str)
 	printed = 0;
 	if (str == NULL)
 	{
-		free(str);
+		free((char *)str); // can i do this??
 		str = ft_strdup("(null)");
 		if (!str)
 			return (INT_MAX);
 	}
 	s_len = ft_strlen(str);
-	if (info->precision > -1 && info->precision < s_len)
+	if (info->precision > -1 && (size_t)info->precision < s_len)
 		s_len = info->precision;
 	if (info->dash)
 		printed += print_str(str, s_len);
-	while (info->width-- > s_len)
-		printed += write(1, &info->padding, 1);
+	if (info->width > -1)
+		while ((size_t)info->width-- > s_len)
+			printed += write(1, &info->padding, 1);
 	if (!info->dash)
 		printed += print_str(str, s_len);
-	free(str);
+	free((char *)str);
 	return (printed);
 }
 
 int	put_char(t_info *info, int chr)
 {
+	int		printed;
+
+	printed = 0;
 	if (info->dash)
 		printed += write(1, &chr, 1);
 	while (info->width-- > 1)

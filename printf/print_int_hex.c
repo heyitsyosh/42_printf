@@ -6,30 +6,32 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/20 04:36:31 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/20 07:00:16 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/libft.h"
 #include "ft_printf.h"
 
-int	put_num(char *num, t_info *info)
+static int	put_num(char *num, t_info *info)
 {
-	int	num_len;
-	int	length;
+	int		num_len;
+	int		length;
+	int		printed;
 
+	printed = 0;
 	num_len = ft_strlen(num);
 	length = ft_max(info->precision, info->width);
 	if (info->sign && info->padding == '0' && ft_strchr("di", info->fmt))
 		printed += write(1, &info->sign, 1);
 	if (info->dash == true)
-		printed += print_str(num);
+		printed += print_str(num, ft_strlen(num));
 	while (length-- > printed + num_len)
 		printed += write(1, &info->padding, 1);
 	if (info->sign && info->padding == ' ' && ft_strchr("di", info->fmt))
 		printed += write(1, &info->sign, 1);
 	if (info->dash == false)
-		printed += print_str(num);
+		printed += print_str(num, ft_strlen(num));
 	return (printed);
 }
 
