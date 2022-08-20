@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 00:38:26 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 02:22:51 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	put_num(char *num, t_info *info)
 	if (info->dash == true)
 		printed += print_str(num, ft_strlen(num));
 	printed_tmp = printed;
-	while (length-- >= printed_tmp + num_len)
+	while (length-- > printed_tmp + num_len)
 		printed += write(1, &info->padding, 1);
 	if (info->sign && ft_strchr("di", info->fmt)
 		&& !(length <= num_len + 1) && !(info->padding == '0'))
