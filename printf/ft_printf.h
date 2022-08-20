@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/20 16:45:40 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/20 22:03:12 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdarg.h>
 # include <stddef.h>
 # include <limits.h>
+
+#include <stdio.h>
 
 typedef struct s_printinfo
 {
