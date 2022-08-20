@@ -6,33 +6,42 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 02:22:51 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 05:15:58 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
+static int	put_num_padding(int printed, int num_len, t_info *info)
+{
+	if (info->precision)
+		while (info->precision-- > num_len)
+			printed += write(1, &"0", 1);
+	else
+		while (info->width-- > printed_tmp + num_len)
+			printed += write(1, &info->padding, 1);
+	return (printed);
+}
+
 static int	put_num(char *num, t_info *info)
 {
 	int		num_len;
-	int		length;
 	int		printed;
 	int		printed_tmp;
 
 	printed = 0;
 	num_len = ft_strlen(num);
-	length = ft_max(info->precision, info->width);
+	if (info->precision <= num_len)
+		info->precision = -1;
 	if (info->sign && ft_strchr("di", info->fmt)
-		&& (length <= num_len + 1 || info->padding == '0'))
+		&& (info->precision > -1 || (info->width > num_len + 1 && info->padding == '0'))
 		printed += write(1, &info->sign, 1);
 	if (info->dash == true)
-		printed += print_str(num, ft_strlen(num));
-	printed_tmp = printed;
-	while (length-- > printed_tmp + num_len)
-		printed += write(1, &info->padding, 1);
+		printed += print_str(num, num_len);
+	printed += put_num_padding(printed, num_len, info)
 	if (info->sign && ft_strchr("di", info->fmt)
-		&& !(length <= num_len + 1) && !(info->padding == '0'))
+		&& !(info->width <= num_len + printed) && !(info->padding == '0'))
 		printed += write(1, &info->sign, 1);
 	if (info->dash == false)
 		printed += print_str(num, num_len);
