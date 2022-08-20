@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 10:30:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/20 07:10:53 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 01:14:14 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static int	get_ull_len(unsigned long long ull, int base)
 
 static void	make_arr(char *arr, unsigned long long ull, int base, t_info *info)
 {
-	const char		*lower = "013456789abcdef";
-	const char		*upper = "013456789ABCDEF";
+	const char		*lower = "0123456789abcdef";
+	const char		*upper = "0123456789ABCDEF";
 	unsigned int	div;
 
 	div = 1;
@@ -59,15 +59,19 @@ char	*ft_ulltoa(unsigned long long ull, int base, t_info *info)
 	if ((digits == INT_MAX - 1 && info->sharp && ft_strchr("xX", info->fmt))
 		|| digits == INT_MAX)
 		return (NULL);
-	else if (info->sharp && ft_strchr("xX", info->fmt))
+	else if (info->fmt == 'p' || (info->sharp && ft_strchr("xX", info->fmt)))
 		digits += 2;
 	arr = (char *)malloc(digits + 1);
 	if (!arr)
 		return (NULL);
-	if (info->sharp && ft_strchr("xX", info->fmt))
+	if ((info->fmt == 'p'
+			|| (info->sharp && ft_strchr("xX", info->fmt && ull))))
 	{
 		arr[0] = '0';
-		arr[1] = info->fmt;
+		if (info->fmt != 'p')
+			arr[1] = info->fmt;
+		else
+			arr[1] = 'x';
 		make_arr(arr + 2, ull, base, info);
 	}
 	else

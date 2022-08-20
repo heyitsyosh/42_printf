@@ -6,11 +6,10 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 05:44:37 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/20 16:29:27 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/20 22:12:01 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft/libft.h"
 #include "ft_printf.h"
 
@@ -53,7 +52,6 @@ int	ft_printf(const char *input, ...)
 {
 	va_list		args;
 	t_info		*info;
-	size_t		input_len;
 	size_t		printed;
 
 	info = malloc(sizeof(t_info));
@@ -61,15 +59,16 @@ int	ft_printf(const char *input, ...)
 		return (-1);
 	info->i = 0;
 	printed = 0;
-	input_len = ft_strlen(input);
 	va_start(args, input);
-	while (info->i < input_len && printed < INT_MAX)
+	while (input[info->i] && printed < INT_MAX)
 	{
+		//printf("[%c]", input[info->i]);
 		init(info);
 		if (input[info->i] == '%')
 			printed += conversion(input + (++info->i), info, args);
 		else
 			printed += no_conversion(input + info->i, info);
+		//printf("	[%zu]\n", info->i);
 	}
 	va_end(args);
 	free (info);

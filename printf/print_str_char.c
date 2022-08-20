@@ -53,8 +53,12 @@ int	put_str(t_info *info, const char *str)
 			return (INT_MAX);
 	}
 	s_len = ft_strlen(str);
+	// printf("[dash:%d]", info->dash);
+	// printf("[precision:%d]", info->precision);
+	// printf("[unchanged s_len:%zu]", s_len);
 	if (info->precision > -1 && (size_t)info->precision < s_len)
 		s_len = info->precision;
+	// printf("[s_len:%zu]", s_len);
 	if (info->dash)
 		printed += print_str(str, s_len);
 	if (info->width > -1)

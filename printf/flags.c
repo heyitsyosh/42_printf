@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags_bonus.c                                      :+:      :+:    :+:   */
+/*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 07:01:55 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/20 16:28:56 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 00:30:25 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	get_precision(const char *str, t_info *info, va_list args, size_t i)
 	else if (str[i] == '.')
 	{
 		i++;
-		info->precision = basic_atoi(str + i, &i, 0);
+		info->precision = basic_atoi(str, &i, 0);
 	}
 	return (i);
 }
@@ -99,6 +99,5 @@ size_t	get_info(const char *after_pct, t_info *info, va_list args, int *p)
 		info->fmt = after_pct[i++];
 	if (info->dash && info->padding == '0')
 		info->padding = ' ';
-	info->i += i;
 	return (i);
 }
