@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 05:44:37 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/20 22:12:01 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 01:50:30 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	conversion(const char *specifiers, t_info *info, va_list args)
 	else if (info->fmt == 's')
 		printed += put_str(info, va_arg(args, char *));
 	else if (info->fmt == 'p')
-		printed += put_unsigned(info, va_arg(args, unsigned int));
+		printed += put_unsigned(info, va_arg(args, unsigned long long));
 	else if (info->fmt == 'd' || info->fmt == 'i')
 		printed += put_signed(info, ft_itoa(va_arg(args, int)));
 	else if (ft_strchr("uxX", info->fmt))

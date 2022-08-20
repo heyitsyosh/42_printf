@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 10:30:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 01:14:14 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 01:51:06 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static int	get_ull_len(unsigned long long ull, int base)
 
 static void	make_arr(char *arr, unsigned long long ull, int base, t_info *info)
 {
-	const char		*lower = "0123456789abcdef";
-	const char		*upper = "0123456789ABCDEF";
-	unsigned int	div;
+	const char			*lower = "0123456789abcdef";
+	const char			*upper = "0123456789ABCDEF";
+	unsigned long long	div;
 
 	div = 1;
 	while (ull / base >= div)
@@ -57,6 +57,7 @@ char	*ft_ulltoa(unsigned long long ull, int base, t_info *info)
 
 	digits = get_ull_len(ull, base);
 	if ((digits == INT_MAX - 1 && info->sharp && ft_strchr("xX", info->fmt))
+		|| (digits == INT_MAX - 1 && info->fmt == 'p')
 		|| digits == INT_MAX)
 		return (NULL);
 	else if (info->fmt == 'p' || (info->sharp && ft_strchr("xX", info->fmt)))
