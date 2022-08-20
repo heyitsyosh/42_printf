@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/20 16:37:21 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/20 16:45:40 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_printinfo
 	bool	sharp;
 	char	sign;
 }	t_info;
+
+int		ft_printf(const char *input, ...);
 
 size_t	get_info(const char *after_pct, t_info *info, va_list args, int *p);
 
