@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 10:30:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 02:01:05 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 05:04:08 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ char	*ft_ulltoa(unsigned long long ull, int base, t_info *info)
 	arr = (char *)malloc(digits + 1);
 	if (!arr)
 		return (NULL);
-	if ((info->fmt == 'p'
-			|| (info->sharp && ft_strchr("xX", info->fmt) && ull)))
+	if (info->fmt == 'p' || (info->sharp && ft_strchr("xX", info->fmt) && ull))
 	{
 		arr[0] = '0';
 		if (info->fmt != 'p')
@@ -75,7 +74,7 @@ char	*ft_ulltoa(unsigned long long ull, int base, t_info *info)
 			arr[1] = 'x';
 		make_arr(arr + 2, ull, base, info);
 	}
-	else
+	else if
 		make_arr(arr, ull, base, info);
 	return (arr);
 }
