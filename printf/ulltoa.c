@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 10:30:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 01:51:06 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 02:01:05 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*ft_ulltoa(unsigned long long ull, int base, t_info *info)
 	if (!arr)
 		return (NULL);
 	if ((info->fmt == 'p'
-			|| (info->sharp && ft_strchr("xX", info->fmt && ull))))
+			|| (info->sharp && ft_strchr("xX", info->fmt) && ull)))
 	{
 		arr[0] = '0';
 		if (info->fmt != 'p')
