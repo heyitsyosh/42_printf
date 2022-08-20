@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 07:01:55 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/20 07:18:50 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/20 16:28:56 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ size_t	get_info(const char *after_pct, t_info *info, va_list args, int *p)
 	if (after_pct[i] && !ft_strchr("cspdiuxX%", after_pct[i]))
 		*p = no_conversion(after_pct + i, info);
 	else
-		info->fmt = after_pct[i];
+		info->fmt = after_pct[i++];
 	if (info->dash && info->padding == '0')
 		info->padding = ' ';
 	info->i += i;

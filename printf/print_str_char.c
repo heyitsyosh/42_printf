@@ -25,15 +25,15 @@ int	print_str(const char *input, size_t len)
 
 int	no_conversion(const char *input, t_info *info)
 {
-	char	*percent_ptr;
+	char	*ptr_to_next_percent;
 	size_t	len;
 	int		print_len;
 
-	percent_ptr = ft_strchr(input, '%');
-	if (!percent_ptr)
+	ptr_to_next_percent = ft_strchr(input, '%');
+	if (!ptr_to_next_percent)
 		len = ft_strlen(input);
 	else
-		len = percent_ptr - input;
+		len = ptr_to_next_percent - input;
 	print_len = print_str(input, len);
 	info->i += print_len;
 	return (print_len);
@@ -62,7 +62,7 @@ int	put_str(t_info *info, const char *str)
 			printed += write(1, &info->padding, 1);
 	if (!info->dash)
 		printed += print_str(str, s_len);
-	free((char *)str);
+	//free((char *)str);
 	return (printed);
 }
 
