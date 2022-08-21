@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 10:30:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 05:04:08 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 11:24:23 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*ft_ulltoa(unsigned long long ull, int base, t_info *info)
 			arr[1] = 'x';
 		make_arr(arr + 2, ull, base, info);
 	}
-	else if
+	else
 		make_arr(arr, ull, base, info);
 	return (arr);
 }
