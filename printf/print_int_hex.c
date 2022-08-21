@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 15:25:36 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 15:44:43 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ static int	put_num_padding(int sign, int num_len, t_info *info)
 	return (padding_count);
 }
 
-static int	put_num(char *num, t_info *info)
+static int	put_num(char *num, int num_len, t_info *info)
 {
-	int	num_len;
 	int	printed_sign;
 	int	printed;
 
 	printed = 0;
 	printed_sign = 0;
-	num_len = ft_strlen(num);
+	if (info->precision == 0 && num[0] == '0')
+		return (0);
 	if (info->precision <= num_len)
 		info->precision = -1;
 	if (info->sign && ft_strchr("di", info->fmt)
@@ -70,7 +70,7 @@ int	put_unsigned(t_info *info, unsigned long long ull)
 	if (!num)
 		return (INT_MAX);
 	else
-		printed = put_num(num, info);
+		printed = put_num(num, (int)ft_strlen(num), info);
 	free(num);
 	return (printed);
 }
@@ -84,10 +84,10 @@ int	put_signed(t_info *info, char *num)
 	if (num[0] == '-')
 	{
 		info->sign = '-';
-		printed = put_num(num + 1, info);
+		printed = put_num(num + 1, (int)ft_strlen(num), info);
 	}
 	else
-		printed = put_num(num, info);
+		printed = put_num(num, (int)ft_strlen(num), info);
 	free (num);
 	return (printed);
 }
