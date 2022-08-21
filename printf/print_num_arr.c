@@ -6,25 +6,27 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 06:02:31 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 06:31:28 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-static int	put_num_padding(int sign, int num_len, t_info *info)
+static int	put_num_padding(int flags, int num_len, t_info *info)
 {
 	int	pad_count;
 
 	pad_count = 0;
 	if (info->sign != '\0')
-		sign += 1;
+		flags += 1;
+	if (info->sharp == true)
+		flags += 2;
 	if (info->precision > -1)
 		while (info->precision-- > num_len)
 			pad_count += write(1, &"0", 1);
 	else
-		while (info->width-- > num_len + sign)
+		while (info->width-- > num_len + flags)
 			pad_count += write(1, &info->padding, 1);
 	return (pad_count);
 }
