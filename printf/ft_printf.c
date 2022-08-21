@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 05:44:37 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 05:11:44 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 13:47:39 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,11 @@ int	ft_printf(const char *input, ...)
 	va_start(args, input);
 	while (input[info->i] && printed < INT_MAX)
 	{
-		//printf("[%c]", input[info->i]);
 		init(info);
 		if (input[info->i] == '%')
 			printed += conversion(input + (++info->i), info, args);
 		else
 			printed += no_conversion(input + info->i, info);
-		//printf("	[%zu]\n", info->i);
 	}
 	va_end(args);
 	free (info);

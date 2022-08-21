@@ -43,22 +43,20 @@ int	put_str(t_info *info, const char *str)
 {
 	size_t	s_len;
 	int		printed;
+	bool	need_to_free_str;
 
 	printed = 0;
+	need_to_free_str = false;
 	if (str == NULL)
 	{
-		free((char *)str); // can i do this??
+		need_to_free_str = true;
 		str = ft_strdup("(null)");
 		if (!str)
 			return (INT_MAX);
 	}
 	s_len = ft_strlen(str);
-	// printf("[dash:%d]", info->dash);
-	// printf("[precision:%d]", info->precision);
-	// printf("[unchanged s_len:%zu]", s_len);
 	if (info->precision > -1 && (size_t)info->precision < s_len)
 		s_len = info->precision;
-	// printf("[s_len:%zu]", s_len);
 	if (info->dash)
 		printed += print_str(str, s_len);
 	if (info->width > -1)
@@ -66,7 +64,8 @@ int	put_str(t_info *info, const char *str)
 			printed += write(1, &info->padding, 1);
 	if (!info->dash)
 		printed += print_str(str, s_len);
-	//free((char *)str);
+	if (need_to_free_str)
+		free((char *)str);
 	return (printed);
 }
 
