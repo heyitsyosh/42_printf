@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 17:34:57 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:39:25 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		ft_printf(const char *input, ...);
 size_t	get_info(const char *after_pct, t_info *info, va_list args);
 
 int		put_char(t_info *info, int chr);
-int		put_str(t_info *info, const char *str);
+int		put_str(t_info *info, const char *str, bool need_to_free_str);
 int		put_unsigned(t_info *info, unsigned long long ull);
 int		put_signed(t_info *info, char *num);
 
