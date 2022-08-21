@@ -18,6 +18,7 @@ This project is pretty straightforward, you have to recode printf. You will lear
 %% | %|
 
 
+----
 flag||
 ----|---|
 num	| minimum field width						|
@@ -28,20 +29,3 @@ num	| minimum field width						|
 '#' 	| prefixes 0x/0X to x/X conversions |
 '.' 	| precision															|
 '*' 	| precision/width from parameter	|
-
-----
-Relationship chart of formats and flags:
-
-----
-**I tried to stay true to the original printf as much as possible.**
-
-If output formatting is interrupted by an irrelevant character, printf prints the string after the already parsed flags.  
->Example:  
->```printf("%#()s%s", "abc")``` outputs ```()sabc```  
-
-My implementation treats all characters not mentioned in the pdf as irrelevant and acts accordingly.  
-
->% \<flags\> \<width\> <.prec> type_char  
-
-Although putting flags, width, precision in the wrong order produces a warning, the original printf parses correctly and compiles.  
-My code accepts output formatting in the wrong order as well.  
