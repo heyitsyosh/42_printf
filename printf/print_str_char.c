@@ -1,13 +1,12 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   no_specifier.c                                     :+:      :+:    :+:   */
+/*   print_str_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 17:21:29 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/12 02:41:04 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:37:24 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +38,12 @@ int	no_conversion(const char *input, t_info *info)
 	return (print_len);
 }
 
-int	put_str(t_info *info, const char *str)
+int	put_str(t_info *info, const char *str, bool need_to_free_str)
 {
 	size_t	s_len;
 	int		printed;
-	bool	need_to_free_str;
 
 	printed = 0;
-	need_to_free_str = false;
 	if (str == NULL)
 	{
 		need_to_free_str = true;
