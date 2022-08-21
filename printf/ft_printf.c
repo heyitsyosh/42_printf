@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 05:44:37 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 13:47:39 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:25:38 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	conversion(const char *specifiers, t_info *info, va_list args)
 	int		printed;
 
 	printed = 0;
-	info->i += get_info(specifiers, info, args, &printed);
+	info->i += get_info(specifiers, info, args);
 	if (info->width == INT_MAX
 		|| (info->precision == INT_MAX && ft_strchr("pdiuxX ", info->fmt)))
 		return (INT_MAX);
