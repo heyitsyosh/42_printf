@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 07:01:55 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 16:08:11 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 16:47:47 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ size_t	get_info(const char *after_pct, t_info *info, va_list args, int *p)
 		}
 	}
 	if (after_pct[i] && !ft_strchr("cspdiuxX%", after_pct[i]))
-		*p = no_conversion(after_pct + i, info);
+		*p = no_conversion(after_pct - 1, info);
 	else
 		info->fmt = after_pct[i++];
 	if (info->dash && info->padding == '0')
