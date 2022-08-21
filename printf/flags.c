@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 07:01:55 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 16:08:11 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:20:34 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ static size_t	get_flags(const char *after_pct, t_info *info, size_t i)
 	return (i);
 }
 
-size_t	get_info(const char *after_pct, t_info *info, va_list args, int *p)
+size_t	get_info(const char *after_pct, t_info *info, va_list args)
 {
 	size_t	i;
 
 	i = 0;
-	while (after_pct[i] && ft_strchr("- +#.*0123456789", after_pct[i]))
+	if (after_pct[i] && ft_strchr("- +#.*0123456789", after_pct[i]))
 	{
 		i += get_flags(after_pct, info, i);
 		if (after_pct[i] && ft_strchr(".*123456789", after_pct[i]))
@@ -95,7 +95,7 @@ size_t	get_info(const char *after_pct, t_info *info, va_list args, int *p)
 		}
 	}
 	if (after_pct[i] && !ft_strchr("cspdiuxX%", after_pct[i]))
-		*p = no_conversion(after_pct + i, info);
+		return (INT_MAX);
 	else
 		info->fmt = after_pct[i++];
 	if (info->dash && info->padding == '0')
