@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 07:01:55 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 17:10:44 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 16:08:11 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ size_t	get_info(const char *after_pct, t_info *info, va_list args, int *p)
 	size_t	i;
 
 	i = 0;
-	if (after_pct[i] && ft_strchr("- +#.*0123456789", after_pct[i]))
+	while (after_pct[i] && ft_strchr("- +#.*0123456789", after_pct[i]))
 	{
 		i += get_flags(after_pct, info, i);
 		if (after_pct[i] && ft_strchr(".*123456789", after_pct[i]))
@@ -95,8 +95,8 @@ size_t	get_info(const char *after_pct, t_info *info, va_list args, int *p)
 		}
 	}
 	if (after_pct[i] && !ft_strchr("cspdiuxX%", after_pct[i]))
-		return (INT_MAX);
-	else if (after_pct[i])
+		*p = no_conversion(after_pct + i, info);
+	else
 		info->fmt = after_pct[i++];
 	if (info->dash && info->padding == '0')
 		info->padding = ' ';
