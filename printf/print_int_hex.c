@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 16:16:44 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 16:27:50 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	put_num_padding(int sign, int num_len, t_info *info)
 	int	padding_count;
 
 	padding_count = 0;
-	if (sign == 0 && info->sign != '\0')
+	if (info->sign != '\0')
 		sign += 1;
 	if (info->precision > -1)
 		while (info->precision-- > num_len)
@@ -84,7 +84,7 @@ int	put_signed(t_info *info, char *num)
 	if (num[0] == '-')
 	{
 		info->sign = '-';
-		printed = put_num(num + 1, (int)ft_strlen(num), info);
+		printed = put_num(num + 1, (int)ft_strlen(num + 1), info);
 	}
 	else
 		printed = put_num(num, (int)ft_strlen(num), info);
