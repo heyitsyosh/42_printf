@@ -18,6 +18,7 @@ This project is pretty straightforward, you have to recode printf. You will lear
 %% | %|
 
 
+----
 flag||
 ----|---|
 num	| minimum field width						|
