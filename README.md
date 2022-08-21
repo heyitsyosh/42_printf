@@ -32,7 +32,7 @@ num	| minimum field width						|
 ----
 Relationship chart of formats and flags:
 
-[chart.png](https://postimg.cc/Z917ZV52)
+![chart.png](https://postimg.cc/Z917ZV52)
 
 ----
 **I tried to stay true to the original printf as much as possible.**
