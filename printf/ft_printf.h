@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/20 22:03:12 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 15:19:15 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 #include <stdio.h>
 
-typedef struct s_printinfo
+typedef struct s_printfinfo
 {
 	size_t	i;
 	char	fmt;	

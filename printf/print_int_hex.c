@@ -6,45 +6,55 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 11:23:15 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 15:25:36 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
 
-static int	put_num_padding(int printed, int num_len, t_info *info)
+static int	put_num_padding(int sign, int num_len, t_info *info)
 {
-	if (info->precision)
+	int	padding_count;
+
+	padding_count = 0;
+	if (info->sign != '\0')
+		sign += 1;
+	if (info->precision > -1)
 		while (info->precision-- > num_len)
-			printed += write(1, &"0", 1);
+			padding_count += write(1, &"0", 1);
 	else
-		while (info->width-- > printed + num_len)
-			printed += write(1, &info->padding, 1);
-	return (printed);
+		while (info->width-- > num_len + sign)
+			padding_count += write(1, &info->padding, 1);
+	return (padding_count);
 }
 
 static int	put_num(char *num, t_info *info)
 {
-	int		num_len;
-	int		printed;
+	int	num_len;
+	int	printed_sign;
+	int	printed;
 
 	printed = 0;
+	printed_sign = 0;
 	num_len = ft_strlen(num);
-	// if (info->precision <= num_len)
-	// 	info->precision = -1;
-	// if (info->sign && ft_strchr("di", info->fmt)
-	// 	&& (info->precision > -1 || (info->width > num_len + 1 && info->padding == '0'))
-	// 	printed += write(1, &info->sign, 1);
+	if (info->precision <= num_len)
+		info->precision = -1;
+	if (info->sign && ft_strchr("di", info->fmt)
+		&& (info->precision > -1 || (info->precision == -1 && info->dash)
+			|| (info->width >= num_len + 1 && info->padding == '0')))
+	{
+		printed_sign += write(1, &info->sign, 1);
+		info->sign = '\0';
+	}
 	if (info->dash == true)
 		printed += print_str(num, num_len);
-	printed += put_num_padding(printed, num_len, info);
-	// if (info->sign && ft_strchr("di", info->fmt)
-	// 	&& !(info->width <= num_len + printed) && !(info->padding == '0'))
-	// 	printed += write(1, &info->sign, 1);
+	printed += put_num_padding(printed_sign, num_len, info);
+	if (info->sign && ft_strchr("di", info->fmt) && !info->dash)
+		printed_sign += write(1, &info->sign, 1);
 	if (info->dash == false)
 		printed += print_str(num, num_len);
-	return (printed);
+	return (printed + printed_sign);
 }
 
 int	put_unsigned(t_info *info, unsigned long long ull)
