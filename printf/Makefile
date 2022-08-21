@@ -5,8 +5,8 @@ OBJDIR = ./objs
 
 SRCS_ = ft_printf\
 		print_str_char\
-		print_int_hex\
-		ulltoa\
+		num_to_arr\
+		print_num_arr\
 		flags
 
 SRCS = $(addsuffix .c, $(SRCS_))
