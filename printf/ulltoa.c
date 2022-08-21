@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 10:30:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 11:24:23 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 15:59:27 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_ulltoa(unsigned long long ull, int base, t_info *info)
 	int			digits;
 
 	digits = get_ull_len(ull, base);
-	if ((digits == INT_MAX - 1 && info->sharp && ft_strchr("xX", info->fmt))
+	if ((digits >= INT_MAX - 1 && info->sharp && ft_strchr("xX", info->fmt))
 		|| (digits == INT_MAX - 1 && info->fmt == 'p')
 		|| digits == INT_MAX)
 		return (NULL);

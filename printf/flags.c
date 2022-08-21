@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 07:01:55 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/21 00:30:25 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/21 16:08:11 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ static int	basic_atoi(const char *str, size_t *i, int num)
 	{
 		if ((num > INT_MAX / 10)
 			|| (num == INT_MAX / 10 && str[*i] - '0' > INT_MAX % 10))
-			return (INT_MAX);
-		num = (num * 10) + (str[*i] - '0');
+			num = INT_MAX;
+		else
+			num = (num * 10) + (str[*i] - '0');
 		(*i)++;
 	}
 	return (num);
