@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 10:30:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 10:17:25 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 11:49:23 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	put_unsigned(t_info *info, unsigned long long ull)
 		return (INT_MAX);
 	if (info->fmt == 'p')
 		info->sharp = true;
-	printed = put_num(num, (int)ft_strlen(num), info);
+	printed = put_num(num, (int)ft_strlen(num), 0, info);
 	free(num);
 	return (printed);
 }
@@ -93,10 +93,10 @@ int	put_signed(t_info *info, char *num)
 	if (num[0] == '-')
 	{
 		info->sign = '-';
-		printed = put_num(num + 1, (int)ft_strlen(num + 1), info);
+		printed = put_num(num + 1, (int)ft_strlen(num + 1), 0, info);
 	}
 	else
-		printed = put_num(num, (int)ft_strlen(num), info);
+		printed = put_num(num, (int)ft_strlen(num), 0, info);
 	free (num);
 	return (printed);
 }
