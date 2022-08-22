@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 16:50:30 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:56:36 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ static void	set_up(char *num, int *num_len, t_info *info)
 		info->padding = ' ';
 	if (info->precision <= *num_len)
 		info->precision = -1;
+	info->save_precision = info->precision;
 }
 
 int	put_num(char *num, int num_len, int printed, t_info *info)
@@ -105,6 +106,7 @@ int	put_num(char *num, int num_len, int printed, t_info *info)
 	printed += put_zero_padding(printed_flags, num_len, info);
 	if (*num)
 		printed += print_str(num, num_len);
+	info->precision = info->save_precision;
 	printed += put_space_padding(2, printed_flags, printed, info);
 	return (printed + printed_flags);
 }
