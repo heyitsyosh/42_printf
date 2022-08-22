@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 10:30:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 09:17:49 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 10:17:25 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,10 @@ char	*ft_ulltoa(unsigned long long ull, int base, t_info *info)
 	int			digits;
 
 	digits = get_ull_len(ull, base);
-	if (info->fmt == 'p')
-		digits += 2;
 	arr = (char *)malloc(digits + 1);
 	if (!arr)
 		return (NULL);
-	if (info->fmt == 'p')
-	{
-		arr[0] = '0';
-		arr[1] = 'x';
-		make_arr(arr + 2, ull, base, info);
-	}
-	else
-		make_arr(arr, ull, base, info);
+	make_arr(arr, ull, base, info);
 	return (arr);
 }
 
@@ -86,8 +77,9 @@ int	put_unsigned(t_info *info, unsigned long long ull)
 		num = ft_ulltoa(ull, 16, info);
 	if (!num)
 		return (INT_MAX);
-	else
-		printed = put_num(num, (int)ft_strlen(num), info);
+	if (info->fmt == 'p')
+		info->sharp = true;
+	printed = put_num(num, (int)ft_strlen(num), info);
 	free(num);
 	return (printed);
 }
@@ -108,33 +100,3 @@ int	put_signed(t_info *info, char *num)
 	free (num);
 	return (printed);
 }
-
-
-// char	*ft_ulltoa(unsigned long long ull, int base, t_info *info)
-// {
-// 	char		*arr;
-// 	int			digits;
-
-// 	digits = get_ull_len(ull, base);
-// 	if ((digits >= INT_MAX - 1 && info->sharp && ft_strchr("xX", info->fmt))
-// 		|| (digits == INT_MAX - 1 && info->fmt == 'p')
-// 		|| digits == INT_MAX)
-// 		return (NULL);
-// 	else if (info->fmt == 'p' || (info->sharp && ft_strchr("xX", info->fmt)))
-// 		digits += 2;
-// 	arr = (char *)malloc(digits + 1);
-// 	if (!arr)
-// 		return (NULL);
-// 	if (info->fmt == 'p' || (info->sharp && ft_strchr("xX", info->fmt) && ull))
-// 	{
-// 		arr[0] = '0';
-// 		if (info->fmt != 'p')
-// 			arr[1] = info->fmt;
-// 		else
-// 			arr[1] = 'x';
-// 		make_arr(arr + 2, ull, base, info);
-// 	}
-// 	else
-// 		make_arr(arr, ull, base, info);
-// 	return (arr);
-// }
