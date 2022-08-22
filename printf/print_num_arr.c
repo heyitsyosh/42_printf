@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 14:54:52 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:24:49 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ static void	set_flag_priorities(int num_len, t_info *info)
 	if (info->precision <= num_len)
 		info->precision = -1;
 	if (info->precision > -1)
-		info->padding = ' ';
-	if (info->dash == true)
 		info->padding = ' ';
 }
 
