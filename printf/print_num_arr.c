@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 15:24:49 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:36:07 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ int	put_num(char *num, int num_len, int printed, t_info *info)
 
 	printed_flags = 0;
 	if (info->precision == 0 && num[0] == '0')
-		return (0);
+		*num = '\0';
 	set_flag_priorities(num_len, info);
 	if (info->sign && ft_strchr("di", info->fmt))
 		printed_flags = put_flag(info->sign, 1, num_len, info);
 	if (info->sharp && ft_strchr("pxX", info->fmt))
 		printed_flags = put_flag('#', 1, num_len, info);
-	if (info->dash == true)
+	if (info->dash == true && *num)
 		printed += print_str(num, num_len);
 	printed += put_space_padding(printed_flags, num_len, info);
 	if (info->sign && ft_strchr("di", info->fmt))
@@ -101,7 +101,7 @@ int	put_num(char *num, int num_len, int printed, t_info *info)
 	if (info->sharp && ft_strchr("pxX", info->fmt))
 		printed_flags += put_flag('#', 2, num_len, info);
 	printed += put_zero_padding(printed_flags, num_len, info);
-	if (info->dash == false)
+	if (info->dash == false && *num)
 		printed += print_str(num, num_len);
 	return (printed + printed_flags);
 }
