@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 10:26:02 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 10:35:37 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	put_flag(char flag, int call, int num_len, t_info *info)
 
 	flag_count = 0;
 	if ((call == 1
-			&& ((info->precision > -1 && !(info->width > info->precision + flags))
+			&& ((info->precision > -1 && !(info->width > info->precision + flag))
 				|| (info->precision == -1 && info->dash)
 				|| (info->width >= num_len + 1 && info->padding == '0')))
 		|| (call == 2 && !info->dash))
