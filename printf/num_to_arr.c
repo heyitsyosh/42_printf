@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 10:30:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 06:02:55 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 09:17:49 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	put_unsigned(t_info *info, unsigned long long ull)
 	char	*num;
 
 	printed = 0;
+	if (ull == 0)
+		info->sharp = false;
 	if (info->fmt == 'u')
 		num = ft_ulltoa(ull, 10, info);
 	else
