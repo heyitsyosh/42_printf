@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 07:01:55 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 15:09:58 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:24:33 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ size_t	get_info(const char *after_pct, t_info *info)
 	i += get_flags(after_pct, i, info);
 	i += get_width_precision(after_pct + i, 0, info);
 	info->fmt = after_pct[i++];
+	if (info->dash)
+		info->padding = ' ';
 	return (i);
 }
