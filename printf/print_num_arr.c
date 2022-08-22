@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 10:35:37 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 10:54:30 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ static int	put_num_padding(int flags, int num_len, t_info *info)
 	if (info->sharp == true)
 		flags += 2;
 	if (info->precision > -1 && info->width > info->precision + flags)
+	{
 		while (info->width-- > info->precision + flags)
 			pad_count += write(1, &info->padding, 1);
+		return (pad_count);
+	}
 	if (info->precision > -1)
 		while (info->precision-- > num_len)
 			pad_count += write(1, &"0", 1);
@@ -40,8 +43,7 @@ static int	put_flag(char flag, int call, int num_len, t_info *info)
 
 	flag_count = 0;
 	if ((call == 1
-			&& ((info->precision > -1 && !(info->width > info->precision + flag))
-				|| (info->precision == -1 && info->dash)
+			&& ((info->precision > -1) || (info->precision == -1 && info->dash)
 				|| (info->width >= num_len + 1 && info->padding == '0')))
 		|| (call == 2 && !info->dash))
 	{
@@ -74,6 +76,7 @@ int	put_num(char *num, int num_len, t_info *info)
 		return (0);
 	if (info->precision <= num_len)
 		info->precision = -1;
+	printed += put_num_padding(printed_flags, num_len, info);
 	if (info->sign && ft_strchr("di", info->fmt))
 		printed_flags = put_flag(info->sign, 1, num_len, info);
 	if (info->sharp && ft_strchr("pxX", info->fmt))
