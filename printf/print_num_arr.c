@@ -6,12 +6,13 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 12:13:16 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 14:54:52 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
+#include <stdio.h>
 
 static int	put_space_padding(int flags, int num_len, t_info *info)
 {
@@ -72,6 +73,16 @@ static int	put_flag(char flag, int call, int num_len, t_info *info)
 	return (flag_count);
 }
 
+static void	set_flag_priorities(int num_len, t_info *info)
+{
+	if (info->precision <= num_len)
+		info->precision = -1;
+	if (info->precision > -1)
+		info->padding = ' ';
+	if (info->dash == true)
+		info->padding = ' ';
+}
+
 int	put_num(char *num, int num_len, int printed, t_info *info)
 {
 	int	printed_flags;
@@ -79,10 +90,7 @@ int	put_num(char *num, int num_len, int printed, t_info *info)
 	printed_flags = 0;
 	if (info->precision == 0 && num[0] == '0')
 		return (0);
-	if (info->precision <= num_len)
-		info->precision = -1;
-	if (info->dash || info->precision > -1)
-		info->padding = ' ';
+	set_flag_priorities(num_len, info);
 	if (info->sign && ft_strchr("di", info->fmt))
 		printed_flags = put_flag(info->sign, 1, num_len, info);
 	if (info->sharp && ft_strchr("pxX", info->fmt))
