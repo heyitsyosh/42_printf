@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 14:40:21 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:55:18 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_printfinfo
 	size_t	i;
 	char	fmt;	
 	int		precision;
+	int		save_precision;
 	int		width;
 	bool	dash;
 	char	padding;
