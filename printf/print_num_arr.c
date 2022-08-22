@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 16:26:54 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:32:08 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,14 @@ static int	put_zero_padding(int flags, int num_len, t_info *info)
 	int	pad_count;
 
 	pad_count = 0;
-	if (info->precision > -1 && info->precision > num_len)
+	if (info->precision > -1)
 		while (info->precision-- > num_len)
 			pad_count += write(1, &"0", 1);
-	else if (info->padding == '0')
+	else if (info->padding == '0' && info->dash == false)
 		while (info->width-- > num_len + flags)
 			pad_count += write(1, &info->padding, 1);
 	return (pad_count);
 }
-
-	// if ((call == 1 && (info->dash
-	// 			|| (info->width >= num_len + 1 && info->padding == '0')))
-	// 	|| (call == 2 && !info->dash))
 
 static int	put_flag(char flag, int call, t_info *info)
 {
@@ -109,5 +105,6 @@ int	put_num(char *num, int num_len, int printed, t_info *info)
 	printed += put_zero_padding(printed_flags, num_len, info);
 	if (*num)
 		printed += print_str(num, num_len);
+	printed += put_space_padding(printed_flags, num_len, info);
 	return (printed + printed_flags);
 }
