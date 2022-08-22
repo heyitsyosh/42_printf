@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 18:23:23 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 18:24:59 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static int	put_flag(char flag, int call, t_info *info)
 	int	flag_count;
 
 	flag_count = 0;
-	if (((info->precision == -1 && info->dash) || (info->padding == '0'))
-		&& call == 1 || call == 2)
+	if ((((info->precision == -1 && info->dash) || (info->padding == '0'))
+		&& call == 1 )|| call == 2)
 	{
 		if (flag == '#')
 		{
