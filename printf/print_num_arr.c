@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 09:37:53 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 10:03:18 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	put_num_padding(int flags, int num_len, t_info *info)
 		flags += 1;
 	if (info->sharp == true)
 		flags += 2;
-	if (info->precision > -1 && info->width > num_len + flags)
+	if (info->precision > -1 && info->width-- > info->precision + flags)
 		while (info->width-- > num_len + flags)
 			pad_count += write(1, &info->padding, 1);
 	if (info->precision > -1)
