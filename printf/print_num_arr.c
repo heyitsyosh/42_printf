@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 17:13:03 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 17:41:45 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ static int	put_space_padding(int call, int flags, int not_space, t_info *info)
 		flags += 2;
 	if (info->precision > -1 && call == 1)
 		not_space += info->precision;
-	if (info->precision > -1 && ((call == 1 && !info->dash) || call == 2))
-		while (info->width-- > not_space + flags)
-			pad_count += write(1, &info->padding, 1);
-	else if ((call == 1 && !info->dash) || call == 2)
+	if ((call == 1 && !info->dash) || call == 2)
 		while (info->width-- > not_space + flags)
 			pad_count += write(1, &info->padding, 1);
 	return (pad_count);
@@ -40,7 +37,7 @@ static int	put_zero_padding(int flags, int num_len, t_info *info)
 
 	pad_count = 0;
 	if (info->precision > -1)
-		while (info->precision-- > num_len)
+		while (info->precision-- > 0)
 			pad_count += write(1, &"0", 1);
 	else if (info->padding == '0')
 		while (info->width-- > num_len + flags)
@@ -85,6 +82,8 @@ static void	set_up(char *num, int *num_len, t_info *info)
 		info->padding = ' ';
 	if (info->precision <= *num_len)
 		info->precision = -1;
+	if (info->precision > -1)
+		info->precision -= *num_len;
 }
 
 int	put_num(char *num, int num_len, int printed, t_info *info)
