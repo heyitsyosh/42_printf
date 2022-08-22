@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 16:37:34 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:40:08 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static int	put_space_padding(int call, int flags, int num_len, t_info *info)
 		flags += 1;
 	if (info->sharp == true)
 		flags += 2;
-	if (info->precision > -1 && (call == 1 && !info->dash))
+	if (info->precision > -1 && ((call == 1 && !info->dash) || call == 2))
 		while (info->width-- > info->precision + flags)
 			pad_count += write(1, &info->padding, 1);
-	else if (call == 1 && !info->dash)
+	else if ((call == 1 && !info->dash) || call == 2)
 		while (info->width-- > num_len + flags)
 			pad_count += write(1, &info->padding, 1);
 	return (pad_count);
