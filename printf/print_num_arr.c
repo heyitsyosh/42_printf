@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 16:08:15 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:16:44 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,16 @@ static int	put_flag(char flag, int call, t_info *info)
 	return (flag_count);
 }
 
-static void	set_flag_priorities(int num_len, t_info *info)
+static void	set_up(char *num, int *num_len, t_info *info)
 {
+	if (info->precision == 0 && num[0] == '0')
+	{
+		*num = '\0';
+		*num_len = 0;
+	}
 	if (info->precision > -1)
 		info->padding = ' ';
-	if (info->precision <= num_len)
+	if (info->precision <= *num_len)
 		info->precision = -1;
 }
 
@@ -89,9 +94,7 @@ int	put_num(char *num, int num_len, int printed, t_info *info)
 	int	printed_flags;
 
 	printed_flags = 0;
-	if (info->precision == 0 && num[0] == '0')
-		*num = '\0';
-	set_flag_priorities(num_len, info);
+	set_up(num, &num_len, info);
 	if (info->sign && ft_strchr("di", info->fmt))
 		printed_flags = put_flag(info->sign, 1, info);
 	if (info->sharp && ft_strchr("pxX", info->fmt))
