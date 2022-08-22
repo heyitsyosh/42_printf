@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 17:10:21 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 17:13:03 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,10 @@ int	put_num(char *num, int num_len, int printed, t_info *info)
 	if (info->sharp && ft_strchr("pxX", info->fmt))
 		printed_flags = put_flag('#', 1, info);
 	if (info->dash == true && info->precision == -1 && *num)
+	{
 		printed += print_str(num, num_len);
+		*num = '\0';
+	}
 	printed += put_space_padding(1, printed_flags, num_len, info);
 	if (info->sign && ft_strchr("di", info->fmt))
 		printed_flags += put_flag(info->sign, 2, info);
