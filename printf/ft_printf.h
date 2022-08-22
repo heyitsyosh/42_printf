@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 11:49:05 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 14:40:21 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_printfinfo
 
 int		ft_printf(const char *input, ...);
 
-size_t	get_info(const char *after_pct, t_info *info, va_list args);
+size_t	get_info(const char *after_pct, t_info *info);
 
 int		put_char(t_info *info, int chr);
 int		put_str(t_info *info, const char *str, bool need_to_free_str);
