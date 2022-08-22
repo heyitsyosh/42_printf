@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:37:03 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 16:40:08 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:50:30 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,6 @@ int	put_num(char *num, int num_len, int printed, t_info *info)
 	printed += put_zero_padding(printed_flags, num_len, info);
 	if (*num)
 		printed += print_str(num, num_len);
-	printed += put_space_padding(2, printed_flags, num_len, info);
+	printed += put_space_padding(2, printed_flags, printed, info);
 	return (printed + printed_flags);
 }
