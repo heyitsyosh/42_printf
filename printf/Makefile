@@ -1,7 +1,6 @@
 NAME = libftprintf.a
 
 LIBFTDIR = ./libft
-OBJDIR = ./objs
 
 SRCS_ = ft_printf\
 		print_str_char\
