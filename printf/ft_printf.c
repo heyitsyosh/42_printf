@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 07:21:17 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 19:18:12 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:35:29 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ size_t	conversion(const char *specifiers, t_info *info, va_list args)
 	printed = 0;
 	info->i += get_info(specifiers, info);
 	if (info->width == INT_MAX || info->precision == INT_MAX
-		|| !info->fmt || !ft_strchr("cspdiuxX%", info->fmt))
+		|| !info->fmt || !ft_strchr("cspdiuxX%", info->fmt)
+		|| (info->sharp && ft_strchr("xX", info->fmt)
+			&& info->precision >= INT_MAX - 2))
 		return (INT_MAX);
 	if (info->fmt == 'c')
 		printed += put_char(info, va_arg(args, int));

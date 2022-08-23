@@ -10,8 +10,7 @@ SRCS_ = ft_printf\
 		flags
 
 SRCS = $(addsuffix .c, $(SRCS_))
-
-OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
+OBJS = $(SRCS:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -24,15 +23,11 @@ $(NAME): $(OBJS)
 	cp libft/libft.a $(NAME)
 	ar rcs $(NAME) $(OBJS)
 
-$(OBJDIR)/%.o:	%.c
-	mkdir -p $(OBJDIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $^
-
 bonus: all
 
 clean:
 	make clean -C $(LIBFTDIR)
-	rm -r $(OBJDIR)
+	rm -f $(OBJS)
 
 fclean: clean
 	make fclean -C $(LIBFTDIR)
