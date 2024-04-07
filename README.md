@@ -58,7 +58,7 @@ gcc main.c ./ft_printf/libftprintf.a
 %x | hex (lowercase) |
 %X | hex (uppercase) |
 %% | % |
----
+
 |Flag||
 ---|---|
 num | minimum field width |
