@@ -12,14 +12,6 @@ Once you validate it, you will reuse this function in your future projects.</p>*
 ## Description:
 Self implemented printf.  
 Printf can be compiled with functions from [libft](https://github.com/heyitsyosh/42_libft/tree/main) into a library named `libftprintf.a`.
-```C
-//Prototype:
-int	ft_printf(const char *input, ...);
-//Examples:
-ft_printf("char: %c, string: %s, %%", 'c', "str");
-ft_printf("%-10d", 123);
-ft_printf("%#x", 123);
-```
 
 ## Set-up:
 First, enter directory with `cd ft_printf`.  
@@ -36,6 +28,14 @@ make re     //delete .o and .a, recompile library
 ```
 
 ## Usage:  
+```C
+//Prototype:
+int	ft_printf(const char *input, ...);
+//Examples:
+ft_printf("char: %c, string: %s, %%", 'c', "str");
+ft_printf("%-10d", 123);
+ft_printf("%#x", 123);
+```
 To use in projects, compile with `-L<path/to/dir> -lftprintf`.  
 Alternatively, compile files directly with `path/to/libftprintf.a`.  
 Make sure to include `ft_printf.h` appropriately in your source code.
@@ -58,7 +58,7 @@ gcc main.c ./ft_printf/libftprintf.a
 %x | hex (lowercase) |
 %X | hex (uppercase) |
 %% | % |
-
+---
 |Flag||
 ---|---|
 num | minimum field width |
