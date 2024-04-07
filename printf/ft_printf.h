@@ -6,18 +6,15 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:46:50 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 16:57:56 by myoshika         ###   ########.fr       */
+/*   Updated: 2024/04/08 07:57:51 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <unistd.h>
-# include <stdbool.h>
 # include <stdarg.h>
-# include <stddef.h>
-# include <limits.h>
+# include <stdbool.h>
 
 typedef struct s_printfinfo
 {
@@ -45,4 +42,5 @@ int		no_conversion(const char *input, t_info *info);
 
 char	*ft_ulltoa(unsigned long long ull, int base, t_info *info);
 int		print_str(const char *input, size_t len);
+
 #endif
