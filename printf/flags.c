@@ -6,10 +6,11 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 07:01:55 by myoshika          #+#    #+#             */
-/*   Updated: 2022/08/22 15:24:33 by myoshika         ###   ########.fr       */
+/*   Updated: 2024/04/07 22:30:03 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <limits.h> //INT_MAX
 #include "libft/libft.h"
 #include "ft_printf.h"
 

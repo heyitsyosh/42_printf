@@ -6,10 +6,12 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 23:20:06 by myoshika          #+#    #+#             */
-/*   Updated: 2022/07/17 18:17:57 by myoshika         ###   ########.fr       */
+/*   Updated: 2024/04/02 07:40:48 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h> //malloc
+#include <limits.h> //LONG_MAX, LONG_MIN
 #include "libft.h"
 
 static int	is_whitespace(char c)
