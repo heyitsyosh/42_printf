@@ -55,7 +55,6 @@ OBJS += $(LST_OBJS)
 endif
 
 CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -I ../../includes/
 
 # **************************************************************************** #
 
@@ -65,7 +64,7 @@ $(OBJS_DIR):
 	mkdir -p $(OBJS_DIR)
 
 $(OBJS_DIR)%.o: %.c | $(OBJS_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
