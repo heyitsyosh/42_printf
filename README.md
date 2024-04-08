@@ -10,7 +10,7 @@ Once you validate it, you will reuse this function in your future projects.</p>*
 ## Score: 125/100🎉
 
 ## Description:
-Self implemented printf.  
+Self-implemented printf. Implemented format specifiers and flags are listed in <b><a href = "#formatting-overview">overview</b>.  
 Printf can be compiled with functions from [libft](https://github.com/heyitsyosh/42_libft/tree/main) into a library named `libftprintf.a`.
 
 ## Set-up:
@@ -58,7 +58,7 @@ gcc main.c ./ft_printf/libftprintf.a
 %x | hex (lowercase) |
 %X | hex (uppercase) |
 %% | % |
----
+
 |Flag||
 ---|---|
 num | minimum field width |
