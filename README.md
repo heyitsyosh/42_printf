@@ -8,7 +8,7 @@ You will learn what is and how to implement variadic functions.<br>
 Once you validate it, you will reuse this function in your future projects.</p>*
 
 ## Description:
-Self-implemented printf. Self-implemented printf. Implemented format specifiers and flags are listed in <b><a href = "#formatting-overview">overview</b>.  
+Self-implemented printf. Implemented format specifiers and flags are listed in <b><a href = "#formatting-overview">overview</b>.  
 Printf can be compiled with functions from [libft](https://github.com/heyitsyosh/42_libft/tree/main) into a library named `libftprintf.a`.  
 
 ## Set-up:
