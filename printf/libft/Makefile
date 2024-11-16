@@ -1,5 +1,7 @@
 NAME = libft.a
 
+OBJS_DIR = objs
+
 SRCS = ft_isalpha\
 		ft_isdigit\
 		ft_isalnum\
@@ -44,7 +46,6 @@ SRCS = ft_isalpha\
 		ft_lstclear\
 		ft_lstiter\
 		ft_lstmap
-OBJS_DIR = objs
 OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(SRCS)))
 
 CFLAGS = -Wall -Wextra -Werror
