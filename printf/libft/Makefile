@@ -34,8 +34,8 @@ SRCS = ft_isalpha\
 		ft_putstr_fd\
 		ft_putendl_fd\
 		ft_putnbr_fd\
-		ft_strnlen
-LST_SRCS = ft_lstnew\
+		ft_strnlen\
+		ft_lstnew\
 		ft_lstadd_front\
 		ft_lstsize\
 		ft_lstlast\
@@ -44,15 +44,8 @@ LST_SRCS = ft_lstnew\
 		ft_lstclear\
 		ft_lstiter\
 		ft_lstmap
-
-OBJS_DIR = objs/
-
-OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS)))
-LST_OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(LST_SRCS)))
-
-ifeq ($(MAKECMDGOALS),list)
-OBJS += $(LST_OBJS)
-endif
+OBJS_DIR = objs
+OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(SRCS)))
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -63,13 +56,11 @@ all: $(NAME)
 $(OBJS_DIR):
 	mkdir -p $(OBJS_DIR)
 
-$(OBJS_DIR)%.o: %.c | $(OBJS_DIR)
+$(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
-
-list: all
 	
 clean:
 	rm -rf $(OBJS_DIR)
@@ -79,4 +70,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all list clean fclean re
+.PHONY: all clean fclean re
