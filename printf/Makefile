@@ -1,17 +1,17 @@
-NAME = libftprintf.a
+NAME     := libftprintf.a
 
-OBJS_DIR = objs
-LIBFT_DIR = libft
+CC       := cc
+CFLAGS   := -Wall -Wextra -Werror
 
-SRCS = ft_printf\
-		print_str_char\
-		num_to_arr\
-		print_num_arr\
-		flags
-OBJS = $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(SRCS)))
+OBJS_DIR := objs
+LIBFT_DIR := libft
 
-CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -I $(LIBFT_DIR)/
+SRCS     := ft_printf \
+            print_str_char \
+            num_to_arr \
+            print_num_arr \
+            flags
+OBJS     := $(addprefix $(OBJS_DIR)/, $(addsuffix .o, $(SRCS)))
 
 # **************************************************************************** #
 
@@ -20,20 +20,20 @@ all: $(NAME)
 $(OBJS_DIR):
 	mkdir -p $(OBJS_DIR)
 
-$(OBJS_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS_DIR) $(OBJS)
-	make -C $(LIBFT_DIR)
+$(NAME): $(OBJS)
+	$(MAKE) -C $(LIBFT_DIR)
 	cp $(LIBFT_DIR)/libft.a $(NAME)
 	ar rcs $(NAME) $(OBJS)
 
 clean:
-	make clean -C $(LIBFT_DIR)
+	$(MAKE) clean -C $(LIBFT_DIR)
 	rm -rf $(OBJS_DIR)
 
 fclean: clean
-	make fclean -C $(LIBFT_DIR)
+	$(MAKE) fclean -C $(LIBFT_DIR)
 	$(RM) $(NAME)
 
 re: fclean all
